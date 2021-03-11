@@ -8,12 +8,14 @@ import {
    FormInput,
    FormWrap,
    Icon,
-   Text,
-} from "./loginElements";
+} from "./profileElements";
 
-const Login = ({ submitHandler }) => {
+const Profile = ({ submitHandler }) => {
+   const [name, setName] = useState("");
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
+   const [confirmPassword, setConfirmPassword] = useState("");
+   // const [message, setMessage] = useState(null)
 
    return (
       <>
@@ -22,7 +24,18 @@ const Login = ({ submitHandler }) => {
                <Icon to="/">techfind.</Icon>
                <FormContent>
                   <Form>
-                     <FormH1>Sign in to access you account</FormH1>
+                     <FormH1>update your profile!</FormH1>
+                     {/* <FormLabel htmlFor="o">Name</FormLabel> */}
+                     <FormInput
+                        type="name"
+                        placeholder="Enter name"
+                        value={name}
+                        onChange={(e) => {
+                           setName(e.target.value);
+                           //    onEmailChange(e.target.value);
+                        }}
+                        required
+                     />
                      {/* <FormLabel htmlFor="o">Email</FormLabel> */}
                      <FormInput
                         type="email"
@@ -45,15 +58,31 @@ const Login = ({ submitHandler }) => {
                         }}
                         required
                      />
+                     {/* <FormLabel htmlFor="o">Confirm password</FormLabel> */}
+                     <FormInput
+                        type="password"
+                        placeholder="Confirm password"
+                        value={confirmPassword}
+                        onChange={(e) => {
+                           setConfirmPassword(e.target.value);
+                           //    onPasswordChange(e.target.value);
+                        }}
+                        required
+                     />
                      <FormButton
                         type="submit"
                         onClick={(event) =>
-                           submitHandler(event, email, password)
+                           submitHandler(
+                              event,
+                              name,
+                              email,
+                              password,
+                              confirmPassword
+                           )
                         }
                      >
                         Continue
                      </FormButton>
-                     <Text>Register | Forgot Password</Text>
                   </Form>
                </FormContent>
             </FormWrap>
@@ -62,4 +91,4 @@ const Login = ({ submitHandler }) => {
    );
 };
 
-export default Login;
+export default Profile;

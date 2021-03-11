@@ -31,7 +31,6 @@ export const Icon = styled(Link)`
    color: #926aa6;
    font-weight: 700;
    font-size: 32px;
-   z-index: 100;
 
    @media screen and (max-width: 480px) {
       margin-left: 16px;
@@ -99,8 +98,9 @@ export const FormButton = styled.button`
 `;
 
 export const Text = styled.span`
-   text-align: right;
-   margin-top: 32px;
+   text-align: center;
+   margin-top: 24px;
    color: #010101;
-   font-size: 12px;
+   font-size: 14px;
+   text-decoration: underline;
 `;

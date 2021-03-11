@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Nav = styled.nav`
    background: transparent;
-   height: 120px;
+   height: 80px;
    margin-top: 0px;
    display: flex;
    justify-content: center;
@@ -21,7 +21,7 @@ export const Nav = styled.nav`
 export const NavbarContainer = styled.div`
    display: flex;
    justify-content: center;
-   height: 120px;
+   height: 80px;
    z-index: 1;
    width: 100%;
    padding: 0 24px;
@@ -34,7 +34,7 @@ export const MobileIcon = styled.div`
    @media screen and (max-width: 768px) {
       display: block;
       position: absolute;
-      color: #fff;
+      color: #926aa6;
       top: 0;
       right: 0;
       transform: translate(-100%, 60%);
@@ -56,12 +56,13 @@ export const NavMenu = styled.ul`
 `;
 
 export const NavItem = styled.li`
-   height: 120px;
+   margin-top: 32px;
+   height: 80px;
 `;
 
 export const NavLinks = styled(Link)`
-   color: #999;
-   font-size: 1.3rem;
+   color: #926aa6;
+   font-size: 1.2rem;
    display: flex;
    align-items: center;
    text-decoration: none;

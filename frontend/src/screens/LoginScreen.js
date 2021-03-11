@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import Message from '../components/Message'
 // import Loader from '../components/Loader'
@@ -8,28 +7,25 @@ import { login } from "../actions/userActions";
 import Login from "../components/Login";
 
 const LoginScreen = ({ location, history }) => {
-   const [email, setEmail] = useState("");
-   const [password, setPassword] = useState("");
+   const dispatch = useDispatch();
 
-   //    const dispatch = useDispatch();
+   const userLogin = useSelector((state) => state.userLogin);
+   const { loading, error, userInfo } = userLogin;
 
-   //    const userLogin = useSelector((state) => state.userLogin);
-   //    const { loading, error, userInfo } = userLogin;
+   // const redirect = location.search ? location.search.split("=")[1] : "/";
 
-   //    const redirect = location.search ? location.search.split("=")[1] : "/";
+   useEffect(() => {
+      if (userInfo) {
+         history.push("/");
+      }
+   }, [history, userInfo]);
 
-   //    useEffect(() => {
-   //       if (userInfo) {
-   //          history.push(redirect);
-   //       }
-   //    }, [history, userInfo, redirect]);
+   const submitHandler = (event, email, password) => {
+      event.preventDefault();
+      dispatch(login(email, password));
+   };
 
-   //    const submitHandler = (e) => {
-   //       e.preventDefault();
-   //       dispatch(login(email, password));
-   //    };
-
-   return <Login />;
+   return <Login submitHandler={submitHandler} />;
 };
 
 export default LoginScreen;
