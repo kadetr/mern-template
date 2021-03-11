@@ -1,24 +1,32 @@
 import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Header from "./components/Header";
+// import Header from "./components/Header"
+// import Footer from "./components/Footer"
+// import HomeScreen from "./screens/HomeScreen"
+// import RegisterScreen from "./screens/RegisterScreen"
+import LoginScreen from "./screens/LoginScreen";
+// import ProfileScreen from "./screens/ProfileScreen"
 
-function App() {
+const App = () => {
    return (
-      <div className="App">
-         <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-               Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-               className="App-link"
-               href="https://reactjs.org"
-               target="_blank"
-               rel="noopener noreferrer"
-            >
-               Learn React
-            </a>
-         </header>
-      </div>
+      <Router>
+         <Header />
+         <Route path="/login" component={LoginScreen} />
+         {/*<Route path='/register' component={RegisterScreen} />
+     <Route path='/profile' component={ProfileScreen} />
+     <Route path='/search/:keyword' component={HomeScreen} exact />
+          <Route path='/page/:pageNumber' component={HomeScreen} exact />
+          <Route
+            path='/search/:keyword/page/:pageNumber'
+            component={HomeScreen}
+            exact
+          />
+          <Route path='/' component={HomeScreen} exact /> */}
+         hodor
+      </Router>
    );
-}
+};
 
 export default App;
