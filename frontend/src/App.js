@@ -1,7 +1,8 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
 // import Header from "./components/Header"
 // import Footer from "./components/Footer"
 import HomeScreen from "./screens/HomeScreen";
@@ -10,9 +11,18 @@ import LoginScreen from "./screens/LoginScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 
 const App = () => {
+   const [isOpen, setIsOpen] = useState(false);
+   const [isOpenAdminBtn, setIsOpenAdminBtn] = useState(false);
+
+   const toggle = () => {
+      setIsOpen(!isOpen);
+   };
+   // useEffect(() => {});
+
    return (
       <Router>
-         <Header />
+         <Sidebar isOpen={isOpen} toggle={toggle} />
+         <Header toggle={toggle} />
          <Route path="/login" component={LoginScreen} />
          <Route path="/register" component={RegisterScreen} />
          <Route path="/profile" component={ProfileScreen} />

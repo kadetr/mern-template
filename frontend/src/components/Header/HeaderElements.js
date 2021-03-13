@@ -43,12 +43,26 @@ export const MobileIcon = styled.div`
    }
 `;
 
+export const Icon = styled(Link)`
+   margin-left: 32px;
+   margin-top: 32px;
+   text-decoration: none;
+   color: #926aa6;
+   font-weight: 700;
+   font-size: 32px;
+
+   @media screen and (max-width: 480px) {
+      margin-left: 16px;
+      margin-top: 8px;
+   }
+`;
+
 export const NavMenu = styled.ul`
    display: flex;
    align-items: center;
    list-style: none;
    text-align: center;
-   margin-right: -22px;
+   // margin-right: -22px;
 
    @media screen and (max-width: 760px) {
       display: none;
@@ -57,7 +71,11 @@ export const NavMenu = styled.ul`
 
 export const NavItem = styled.li`
    margin-top: 32px;
-   height: 80px;
+   height: 40px;
+
+   @media screen and (max-height: 600px) {
+      margin-top: 16px;
+   }
 `;
 
 export const NavLinks = styled(Link)`
@@ -69,8 +87,59 @@ export const NavLinks = styled(Link)`
    padding: 0 1rem;
    height: 100%;
    cursor: pointer;
+   border-bottom: 3px solid transparent;
 
-   &.active {
-      border.bottom: 3 px solid #01bf71;
+   &:hover,
+   &:active {
+      border-bottom: 3px solid #926aa2;
+   }
+`;
+
+export const NavDropdownBtn = styled.button`
+   font-size: 1.2rem;
+   border: none;
+   outline: none;
+   color: #926aa6;
+
+   background-color: inherit;
+   font-family: inherit;
+   cursor: pointer;
+
+   margin-top: 32px;
+   height: 40px;
+
+   @media screen and (max-height: 600px) {
+      margin-top: 16px;
+   }
+`;
+
+export const NavDropdownContent = styled.div`
+   display: none;
+   position: absolute;
+   background-color: #f8d948;
+   min-width: 160px;
+   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+   z-index: 1;
+`;
+
+export const NavDropdownContentLink = styled(Link)`
+   float: none;
+   color: black;
+   padding: 12px 16px;
+   text-decoration: none;
+   display: block;
+   text-align: left;
+
+   &:hover {
+      background-color: #ddd;
+   }
+`;
+
+export const NavDropdownItem = styled.li`
+   float: left;
+   overflow: hidden;
+
+   &:hover ${NavDropdownContent} {
+      display: block;
    }
 `;

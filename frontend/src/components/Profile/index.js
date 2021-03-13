@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
    Container,
    FormButton,
@@ -10,12 +10,19 @@ import {
    Icon,
 } from "./profileElements";
 
-const Profile = ({ submitHandler }) => {
-   const [name, setName] = useState("");
-   const [email, setEmail] = useState("");
+const Profile = ({ submitHandler, user }) => {
+   const [name, setName] = useState("your name");
+   const [email, setEmail] = useState("your email");
    const [password, setPassword] = useState("");
    const [confirmPassword, setConfirmPassword] = useState("");
    // const [message, setMessage] = useState(null)
+
+   useEffect(() => {
+      if (user.name && user.email) {
+         setName(user.name);
+         setEmail(user.email);
+      }
+   }, [user]);
 
    return (
       <>

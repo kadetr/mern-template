@@ -112,7 +112,7 @@ export const register = (name, email, password) => async (dispatch) => {
    }
 };
 
-export const getUserDetails = (id) => async (dispatch, getState) => {
+export const getUserDetails = () => async (dispatch, getState) => {
    try {
       dispatch({
          type: USER_DETAILS_REQUEST,
@@ -128,7 +128,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
          },
       };
 
-      const { data } = await axios.get(`/api/users/${id}`, config);
+      const { data } = await axios.get(`/api/users/${userInfo._id}`, config);
 
       dispatch({
          type: USER_DETAILS_SUCCESS,
@@ -149,7 +149,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
    }
 };
 
-export const updateUserProfile = (user) => async (dispatch, getState) => {
+export const updateUser = (user) => async (dispatch, getState) => {
    try {
       dispatch({
          type: USER_UPDATE_REQUEST,
@@ -192,7 +192,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
    }
 };
 
-export const listUsers = () => async (dispatch, getState) => {
+export const listUsersAdmin = () => async (dispatch, getState) => {
    try {
       dispatch({
          type: USER_LIST_REQUEST_ADMIN,
@@ -229,7 +229,7 @@ export const listUsers = () => async (dispatch, getState) => {
    }
 };
 
-export const deleteUser = (id) => async (dispatch, getState) => {
+export const deleteUserAdmin = (id) => async (dispatch, getState) => {
    try {
       dispatch({
          type: USER_DELETE_REQUEST_ADMIN,
@@ -263,7 +263,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
    }
 };
 
-export const updateUser = (user) => async (dispatch, getState) => {
+export const updateUserAdmin = (user) => async (dispatch, getState) => {
    try {
       dispatch({
          type: USER_UPDATE_REQUEST_ADMIN,
