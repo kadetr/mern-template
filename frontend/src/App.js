@@ -9,6 +9,8 @@ import HomeScreen from "./screens/HomeScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import LoginScreen from "./screens/LoginScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import UserListAdmin from "./screens/UserListScreen";
+import UserEditAdmin from "./screens/UserEditScreen";
 
 const App = () => {
    const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +28,8 @@ const App = () => {
          <Route path="/login" component={LoginScreen} />
          <Route path="/register" component={RegisterScreen} />
          <Route path="/profile" component={ProfileScreen} />
+         <Route path="/admin/userlist" component={UserListAdmin} />
+         <Route path="/admin/users/:id/edit" component={UserEditAdmin} />
          {/*<Route path='/search/:keyword' component={HomeScreen} exact />
           <Route path='/page/:pageNumber' component={HomeScreen} exact />
           <Route
@@ -34,7 +38,6 @@ const App = () => {
             exact
           /> */}
          <Route path="/" component={HomeScreen} exact />
-         hodor
       </Router>
    );
 };

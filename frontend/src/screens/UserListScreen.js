@@ -1,23 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { listUsers, deleteUser } from "../actions/userActions";
+import { listUsersAdmin, deleteUserAdmin } from "../actions/userActions";
 import UserListAdmin from "../components/UserListAdmin";
+import Loader from "../components/Loader";
 
-const UserListScreen = () => {
+const UserListScreen = ({ history }) => {
    const dispatch = useDispatch();
 
-   const userList = useSelector((state) => state.userList);
-   const { loading, error, users } = userList;
+   const userListAdmin = useSelector((state) => state.userListAdmin);
+   const { loading, error, users } = userListAdmin;
 
    const userLogin = useSelector((state) => state.userLogin);
    const { userInfo } = userLogin;
 
-   const userDelete = useSelector((state) => state.userDelete);
-   const { success: successDelete } = userDelete;
+   const userDeleteAdmin = useSelector((state) => state.userDeleteAdmin);
+   const { success: successDelete } = userDeleteAdmin;
 
    useEffect(() => {
       if (userInfo && userInfo.isAdmin) {
-         dispatch(listUsers());
+         dispatch(listUsersAdmin());
       } else {
          history.push("/login");
       }
@@ -25,11 +26,23 @@ const UserListScreen = () => {
 
    const deleteHandler = (id) => {
       if (window.confirm("Are you sure")) {
-         dispatch(deleteUser(id));
+         dispatch(deleteUserAdmin(id));
       }
    };
 
-   return <UserListAdmin submitHandler={submitHandler} />;
+   return (
+      <>
+         {loading ? (
+            <Loader />
+         ) : (
+            <UserListAdmin
+               users={users}
+               adminId={userInfo._id}
+               deleteHandler={deleteHandler}
+            />
+         )}
+      </>
+   );
 };
 
 export default UserListScreen;

@@ -20,12 +20,13 @@ const ProfileScreen = ({ location, history }) => {
       if (!userInfo) {
          history.push("/login");
       } else {
-         if (!user || !user.name || success) {
+         // if (user._id) dispatch(getUserDetails("profile"));
+         if (!userInfo || !userInfo.name || success) {
             dispatch({ type: USER_UPDATE_RESET });
-            dispatch(getUserDetails());
+            dispatch(getUserDetails("profile"));
          }
       }
-   }, [dispatch, history, userInfo, user, success]);
+   }, [dispatch, history, userInfo, success]);
 
    const submitHandler = (event, name, email, password, confirmPassword) => {
       event.preventDefault();
@@ -33,11 +34,11 @@ const ProfileScreen = ({ location, history }) => {
          //setMessage("Passwords do not match");
          console.log("password not matched");
       } else {
-         dispatch(updateUser({ id: user._id, name, email, password }));
+         dispatch(updateUser({ id: userInfo._id, name, email, password }));
       }
    };
 
-   return <Profile submitHandler={submitHandler} user={user} />;
+   return <Profile submitHandler={submitHandler} user={userInfo} />;
 };
 
 export default ProfileScreen;

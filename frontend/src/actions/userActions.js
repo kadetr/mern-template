@@ -112,7 +112,7 @@ export const register = (name, email, password) => async (dispatch) => {
    }
 };
 
-export const getUserDetails = () => async (dispatch, getState) => {
+export const getUserDetails = (id) => async (dispatch, getState) => {
    try {
       dispatch({
          type: USER_DETAILS_REQUEST,
@@ -127,8 +127,9 @@ export const getUserDetails = () => async (dispatch, getState) => {
             Authorization: `Bearer ${userInfo.token}`,
          },
       };
-
-      const { data } = await axios.get(`/api/users/${userInfo._id}`, config);
+      let p = id;
+      if (id === "profile") p = userInfo._id;
+      const { data } = await axios.get(`/api/users/${p}`, config);
 
       dispatch({
          type: USER_DETAILS_SUCCESS,
@@ -263,7 +264,10 @@ export const deleteUserAdmin = (id) => async (dispatch, getState) => {
    }
 };
 
-export const updateUserAdmin = (user) => async (dispatch, getState) => {
+export const updateUserAdmin = ({ id, name, email, isAdmin }) => async (
+   dispatch,
+   getState
+) => {
    try {
       dispatch({
          type: USER_UPDATE_REQUEST_ADMIN,
@@ -280,7 +284,13 @@ export const updateUserAdmin = (user) => async (dispatch, getState) => {
          },
       };
 
-      const { data } = await axios.put(`/api/users/${user._id}`, user, config);
+      console.log(id);
+
+      const { data } = await axios.put(
+         `/api/users/${id}`,
+         { name, email, isAdmin },
+         config
+      );
 
       dispatch({ type: USER_UPDATE_SUCCESS_ADMIN });
 

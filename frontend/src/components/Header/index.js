@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaBars } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
@@ -14,9 +14,9 @@ import {
    NavDropdownBtn,
    NavDropdownContent,
    NavDropdownContentLink,
-} from "./HeaderElements";
+} from "./headerElements";
 
-const Header = ({ toggle, toggleAdminBtn, isOpenAdminBtn }) => {
+const Header = ({ toggle }) => {
    const dispatch = useDispatch();
 
    const userLogin = useSelector((state) => state.userLogin);
@@ -44,11 +44,14 @@ const Header = ({ toggle, toggleAdminBtn, isOpenAdminBtn }) => {
                      </NavItem>
                   </>
                ) : (
-                  <NavItem>
-                     <NavLinks to="/profile">
-                        Profile {userInfo.isAdmin}
-                     </NavLinks>
-                  </NavItem>
+                  <>
+                     <NavItem>
+                        <NavLinks to="/profile">Profile</NavLinks>
+                     </NavItem>
+                     <NavItem>
+                        <NavLinks onClick={logoutHandler}>Logout</NavLinks>
+                     </NavItem>
+                  </>
                )}
                {userInfo && userInfo.isAdmin && (
                   <NavDropdownItem>
@@ -57,7 +60,7 @@ const Header = ({ toggle, toggleAdminBtn, isOpenAdminBtn }) => {
                         <NavDropdownContentLink to="/admin/userlist">
                            Users
                         </NavDropdownContentLink>
-                        <NavDropdownContentLink to="/admin/productList">
+                        <NavDropdownContentLink to="/admin/productlist">
                            Products
                         </NavDropdownContentLink>
                      </NavDropdownContent>

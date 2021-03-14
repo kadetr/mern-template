@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
    Container,
    FormButton,
@@ -8,21 +8,20 @@ import {
    FormInput,
    FormWrap,
    Icon,
-} from "./profileElements";
+} from "./userEditAdminElements";
 
-const Profile = ({ submitHandler, user }) => {
+const UserEditAdmin = ({ submitHandler, user }) => {
    const [name, setName] = useState("");
    const [email, setEmail] = useState("");
-   const [password, setPassword] = useState("");
-   const [confirmPassword, setConfirmPassword] = useState("");
-   // const [message, setMessage] = useState(null)
+   const [isAdmin, setIsAdmin] = useState(false);
 
    useEffect(() => {
       if (user.name && user.email) {
          setName(user.name);
          setEmail(user.email);
+         setIsAdmin(user.isAdmin);
       }
-   }, []);
+   }, [user]);
 
    return (
       <>
@@ -31,11 +30,10 @@ const Profile = ({ submitHandler, user }) => {
                <Icon to="/">techfind.</Icon>
                <FormContent>
                   <Form>
-                     <FormH1>update your profile!</FormH1>
+                     <FormH1>update user profile!</FormH1>
                      {/* <FormLabel htmlFor="o">Name</FormLabel> */}
                      <FormInput
                         type="name"
-                        placeholder="Enter name"
                         value={name}
                         onChange={(e) => {
                            setName(e.target.value);
@@ -45,7 +43,6 @@ const Profile = ({ submitHandler, user }) => {
                      {/* <FormLabel htmlFor="o">Email</FormLabel> */}
                      <FormInput
                         type="email"
-                        placeholder="Enter email"
                         value={email}
                         onChange={(e) => {
                            setEmail(e.target.value);
@@ -54,34 +51,18 @@ const Profile = ({ submitHandler, user }) => {
                      />
                      {/* <FormLabel htmlFor="o">Password</FormLabel> */}
                      <FormInput
-                        type="password"
-                        placeholder="Enter password"
-                        value={password}
-                        onChange={(e) => {
-                           setPassword(e.target.value);
+                        type="checkbox"
+                        checked={isAdmin}
+                        onChange={() => {
+                           setIsAdmin(!isAdmin);
                         }}
                         required
                      />
-                     {/* <FormLabel htmlFor="o">Confirm password</FormLabel> */}
-                     <FormInput
-                        type="password"
-                        placeholder="Confirm password"
-                        value={confirmPassword}
-                        onChange={(e) => {
-                           setConfirmPassword(e.target.value);
-                        }}
-                        required
-                     />
+                     Admin
                      <FormButton
                         type="submit"
                         onClick={(event) =>
-                           submitHandler(
-                              event,
-                              name,
-                              email,
-                              password,
-                              confirmPassword
-                           )
+                           submitHandler(event, name, email, isAdmin)
                         }
                      >
                         Continue
@@ -94,4 +75,4 @@ const Profile = ({ submitHandler, user }) => {
    );
 };
 
-export default Profile;
+export default UserEditAdmin;
